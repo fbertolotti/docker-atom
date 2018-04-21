@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    atom:
+        build: .
+        volumes:
+            - /tmp/.X11-unix/:/tmp/.X11-unix/
+            - /dev/shm:/dev/shm
+        environment:
+            - DISPLAY=${DISPLAY}
+    linter:
+        image: jeromepin/whale-linter
+        volumes:
+            - $PWD/Dockerfile:/Dockerfile
+            - $PWD/config.cson:/config.cson
